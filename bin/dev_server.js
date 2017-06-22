@@ -8,7 +8,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import historyApiFallback from 'connect-history-api-fallback';
-import config from '../src/config';
+import config from '../config/config';
 import webpackConfig from './webpack.dev';
 
 const compiler = webpack(webpackConfig);

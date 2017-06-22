@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import config from '../../config';
+import config from '../../../config/config';
 
 const NotFound = () => {
   const pageTitle = `404 not found - ${config.app.title}`;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import logoImg from '../../images/logo.jpg';
-import config from '../../config';
+import config from '../../../config/config';
 
 const About = () => {
   const homeStyles = require('../Home/styles.css');

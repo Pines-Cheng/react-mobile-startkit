@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
 import {showHello, showHelloAsync, showMoviesAsync} from './actions';
 import logoImg from '../../images/logo.jpg';
-import config from '../../config';
+import config from '../../../config/config';
 import {selectInfo, selectHome} from './selectors';
 import {Tap} from '../../components';
 
