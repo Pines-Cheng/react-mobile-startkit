@@ -10,6 +10,8 @@ const postcssSimpleVars = require('postcss-simple-vars');
 
 const config = require('../config/config');
 
+console.log(config);
+
 const hostname = config.host || 'localhost';
 const port = config.hotLoadPort;
 const host = `http://${hostname}:${port}/`;
@@ -61,7 +63,7 @@ const devWebpackConfig = {
       'babel-polyfill',
       `webpack-hot-middleware/client?path=${host}__webpack_hmr`,
       'react-hot-loader/patch',
-      `${srcPath}index`
+      `${srcPath}/index`
     ]
   },
   output: {

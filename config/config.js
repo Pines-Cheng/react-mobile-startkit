@@ -3,7 +3,7 @@
  * @author Pines_Cheng <spider.cs.nuc@gmail.com>
  */
 
-export default {
+module.exports = {
   host: process.env.HOST || 'localhost',
   port: process.env.PORT || 3002,
   devPort: process.env.DEV_PORT || 3001,

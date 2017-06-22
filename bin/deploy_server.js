@@ -13,8 +13,6 @@ const app = express();
 // 设置静态资源目录
 app.use(express.static('dist'));
 
-console.log(config.port, process.env.PORT);
-
 app.listen(config.port, (err) => {
   if (err) {
     console.error(`=> OMG!!! 🙀 ${err}`);
