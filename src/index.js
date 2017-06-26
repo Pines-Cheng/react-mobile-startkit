@@ -1,30 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader';
-import createHistory from 'history/createBrowserHistory';
-import configureStore from './store';
-import Root from './page/Root';
+import dva from 'dva';
+import { Toast } from 'antd-mobile';
+import createLoading from 'dva-loading';
+import router from './router';
 
-/* eslint no-underscore-dangle: 0 */
-const initialState = window.__INITIAL_STATE__;
-const history = createHistory();
-const store = configureStore(initialState, history);
+const ERROR_MSG_DURATION = 3; // 3 秒
 
-ReactDOM.render(
-  <AppContainer>
-    <Root store={store} history={history} />
-  </AppContainer>,
-  document.getElementById('container'),
-);
+// 1. Initialize 默认为hashHistory
+const app = dva({
+  onError(e) {
+    Toast.fail(e.message, ERROR_MSG_DURATION);
+  },
+});
 
-if (module.hot) {
-  module.hot.accept('./page/Root', () => {
-    const NextRoot = require('./page/Root').default;
-    ReactDOM.render(
-      <AppContainer>
-        <NextRoot store={store} history={history} />
-      </AppContainer>,
-      document.getElementById('container'),
-    );
-  });
-}
+// 2. Plugins
+app.use(createLoading());
+
+// 3. Model
+
+
+// 4. Router
+app.router(router);
+
+// 5. Start
+app.start('#container');

@@ -10,13 +10,32 @@ const postcssSimpleVars = require('postcss-simple-vars');
 
 const config = require('../config/config');
 
-console.log(config);
-
 const hostname = config.host || 'localhost';
 const port = config.hotLoadPort;
 const host = `http://${hostname}:${port}/`;
 
 import {commonWebpackConfig, srcPath, distPath} from './webpack.common';
+
+const devWebpackConfig = {
+  devtool: 'inline-source-map',
+  entry: {
+    main: [
+      'babel-polyfill',
+      `webpack-hot-middleware/client?path=${host}__webpack_hmr`,
+      'react-hot-loader/patch', // react-hot-loader3.0
+      `${srcPath}/index`
+    ]
+  },
+  output: {
+    path: distPath,
+    filename: 'js/[name].[hash:8].bundle.js',
+    chunkFilename: 'js/[id].[name].[chunkhash:8].bundle.js',
+    publicPath: host
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  }
+};
 
 commonWebpackConfig.module.rules = commonWebpackConfig.module.rules.concat(
   [
@@ -55,26 +74,6 @@ commonWebpackConfig.plugins = commonWebpackConfig.plugins.concat(
     })
   ]
 );
-
-const devWebpackConfig = {
-  devtool: 'inline-source-map',
-  entry: {
-    main: [
-      'babel-polyfill',
-      `webpack-hot-middleware/client?path=${host}__webpack_hmr`,
-      'react-hot-loader/patch',
-      `${srcPath}/index`
-    ]
-  },
-  output: {
-    path: distPath,
-    filename: 'js/[name].js',
-    publicPath: host
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-  }
-};
 
 const webpackConfig = Object.assign({}, commonWebpackConfig, devWebpackConfig);
 
