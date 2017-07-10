@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Footer from '../components/footer';
-import '../css/common.scss';
+import '../css/common.less';
 
 class App extends React.Component {
   constructor(props) {

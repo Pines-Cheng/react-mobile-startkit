@@ -74,9 +74,6 @@ const proWebpackConfig = {
   output: {
     path: distPath,
     filename: 'js/[chunkhash].[name].js'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
   }
 };
 

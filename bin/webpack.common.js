@@ -102,11 +102,8 @@ const commonWebpackConfig = {
     ]
   },
   resolve: {
-    modules: [
-      path.join(__dirname, '../src'),
-      'node_modules'
-    ],
-    extensions: ['', '.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.ts', '.tsx', '.js', '.jsx', '.json'],
+    modules: ['node_modules', path.join(__dirname, '../src')],
+    extensions: ['.web.js', '.js', '.json']
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({

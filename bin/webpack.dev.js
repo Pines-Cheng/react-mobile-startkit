@@ -31,16 +31,13 @@ const devWebpackConfig = {
     filename: 'js/[name].[hash:8].bundle.js',
     chunkFilename: 'js/[id].[name].[chunkhash:8].bundle.js',
     publicPath: host
-  },
-  resolve: {
-    extensions: ['.js', '.jsx'],
   }
 };
 
 commonWebpackConfig.module.rules = commonWebpackConfig.module.rules.concat(
   [
     {
-      test: /\.(css|scss)$/,
+      test: /\.(css|scss|less)$/,
       use: [
         {
           loader: 'style-loader'

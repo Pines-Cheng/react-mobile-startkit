@@ -6,7 +6,7 @@
     ["transform-es2015-classes", {"loose": true}],
     "transform-proto-to-assign",
     "transform-es2015-modules-commonjs",
-    ["import", { "style": "css", "libraryName": "antd-mobile" }]
+    ["import", { "libraryName":"antd-mobile", "style": "true" }]
   ],
   "presets": [
     "react",
