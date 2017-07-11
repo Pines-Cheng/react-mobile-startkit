@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import {TabBar, Icon} from 'antd-mobile';
-import './style.scss';
+import './style.less';
 
 class Footer extends React.Component {
 
@@ -11,6 +11,7 @@ class Footer extends React.Component {
       selectedTab: 'redTab',
       hidden: false,
     };
+    this.handleTabChange = ::this.handleTabChange;
   }
 
   handleTabChange() {
@@ -62,7 +63,7 @@ class Footer extends React.Component {
           title="口碑"
           badge={'new'}
           selected={this.state.selectedTab === 'redTab'}
-          onPress={this.handleTabChange()}
+          onPress={this.handleTabChange}
           data-seed="logId1"
         />
         <TabBar.Item
@@ -84,7 +85,7 @@ class Footer extends React.Component {
           title="朋友"
           dot
           selected={this.state.selectedTab === 'greenTab'}
-          onPress={this.handleTabChange()}
+          onPress={this.handleTabChange}
         />
         <TabBar.Item
           key="我的"
@@ -92,7 +93,7 @@ class Footer extends React.Component {
           selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
           title="我的"
           selected={this.state.selectedTab === 'yellowTab'}
-          onPress={this.handleTabChange()}
+          onPress={this.handleTabChange}
         />
       </TabBar>
     );

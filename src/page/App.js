@@ -4,8 +4,9 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Footer from '../components/footer';
+import Footer from '../components/menu';
 import '../css/common.less';
+// import 'antd-mobile/dist/antd-mobile.css';
 
 class App extends React.Component {
   constructor(props) {

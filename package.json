@@ -4,7 +4,7 @@
   "description": "易订货h5",
   "main": "index.js",
   "scripts": {
-    "precommit": "eslint --cache --fix ./src && stylelint --fix src/**/*.scss",
+    "precommit": "eslint --cache --fix ./src && stylelint --fix src/**/*.less",
     "commitmsg": "validate-commit-msg",
     "start": "cross-env NODE_ENV=development babel-node --max-old-space-size=8192 ./bin/dev_server.js",
     "deploy": "cross-env NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config ./bin/webpack.dist.js --progress",
@@ -98,6 +98,8 @@
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "18.0.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
     "lint-staged": "3.2.1",
     "node-plop": "0.5.4",
     "null-loader": "0.1.1",

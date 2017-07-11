@@ -7,6 +7,7 @@ const autoprefixer = require('autoprefixer');
 const postcssNested = require('postcss-nested');
 const postcssMixins = require('postcss-mixins');
 const postcssSimpleVars = require('postcss-simple-vars');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const config = require('../config/config');
 
@@ -37,17 +38,37 @@ const devWebpackConfig = {
 commonWebpackConfig.module.rules = commonWebpackConfig.module.rules.concat(
   [
     {
-      test: /\.(css|scss|less)$/,
+      test: /\.less$/,
+      use: [{
+        loader: 'style-loader' // creates style nodes from JS strings
+      }, {
+        loader: 'css-loader', // translates CSS into CommonJS
+        options: {
+          sourceMap: true
+        }
+      }, {
+        loader: 'less-loader',// compiles Less to CSS
+        options: {
+          sourceMap: true
+        }
+      }]
+    },
+    {
+      test: /\.(css)$/,
       use: [
         {
-          loader: 'style-loader'
+          loader: 'style-loader',
+          options: {
+            sourceMap: true
+          }
         },
         {
           loader: 'css-loader',
           options: {
-            modules: true,
-            importLoaders: 1,
-            localIdentName: '[name]__[local]___[hash:base64:5]'
+            sourceMap: true,
+            // modules: true,
+            // importLoaders: 1,
+            // localIdentName: '[name]__[local]___[hash:base64:5]'
           }
         },
         {
@@ -68,7 +89,8 @@ commonWebpackConfig.plugins = commonWebpackConfig.plugins.concat(
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
-    })
+    }),
+    // new BundleAnalyzerPlugin()
   ]
 );
 
