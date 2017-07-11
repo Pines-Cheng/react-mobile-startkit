@@ -3,7 +3,7 @@ import config from '../config/config';
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const pxtorem = require('postcss-pxtorem');
 const rootPath = path.resolve(__dirname, '../');
 const srcPath = path.join(rootPath, '/src/');
 const distPath = path.join(rootPath, '/dist/');

@@ -4,11 +4,11 @@
  */
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const postcssNested = require('postcss-nested');
-const postcssMixins = require('postcss-mixins');
-const postcssSimpleVars = require('postcss-simple-vars');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const pxtorem = require('postcss-pxtorem')({
+  rootValue: 100,
+  propWhiteList: [],
+});
 const config = require('../config/config');
 
 const hostname = config.host || 'localhost';
@@ -38,47 +38,31 @@ const devWebpackConfig = {
 commonWebpackConfig.module.rules = commonWebpackConfig.module.rules.concat(
   [
     {
-      test: /\.less$/,
-      use: [{
-        loader: 'style-loader' // creates style nodes from JS strings
-      }, {
-        loader: 'css-loader', // translates CSS into CommonJS
-        options: {
-          sourceMap: true
-        }
-      }, {
-        loader: 'less-loader',// compiles Less to CSS
-        options: {
-          sourceMap: true
-        }
-      }]
-    },
-    {
-      test: /\.(css)$/,
+      test: /\.(css|less)$/,
       use: [
         {
-          loader: 'style-loader',
+          loader: 'style-loader' // creates style nodes from JS strings
+        },
+        {
+          loader: 'css-loader', // translates CSS into CommonJS
           options: {
             sourceMap: true
           }
         },
         {
-          loader: 'css-loader',
-          options: {
-            sourceMap: true,
-            // modules: true,
-            // importLoaders: 1,
-            // localIdentName: '[name]__[local]___[hash:base64:5]'
-          }
-        },
-        {
           loader: 'postcss-loader',
           options: {
-            plugins: () => [postcssMixins, postcssSimpleVars, postcssNested, autoprefixer]
+            plugins: () => [autoprefixer, pxtorem]
           },
         },
+        {
+          loader: 'less-loader', // compiles Less to CSS
+          options: {
+            sourceMap: true
+          }
+        },
       ]
-    }
+    },
   ]
 );
 
