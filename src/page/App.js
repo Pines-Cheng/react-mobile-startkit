@@ -4,9 +4,9 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Footer from '../components/menu';
+import Footer from '../components/Footer';
 import '../css/common.less';
-// import 'antd-mobile/dist/antd-mobile.css';
+import Header from '../components/Header';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,10 +17,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="app-wrap">
-        <div className="main-wrap">
+        <div className="mai-wrap">
+          <Header/>
           {this.props.children}
-        </div>
-        <div className="footer-wrap">
           <Footer/>
         </div>
       </div>
