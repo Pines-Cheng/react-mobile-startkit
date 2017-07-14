@@ -30,12 +30,14 @@ module.exports = {
     "react/forbid-prop-types": 0,//指定允许的prop type
     "react/jsx-no-literals": 0, //var Hello = <div>{'test'}</div>;
     "react/jsx-tag-spacing": 0,
+    "react/jsx-handler-names": 1,
     'react/jsx-no-bind': ['error', {
       ignoreRefs: true,
       allowArrowFunctions: false,//不允许jsx里面出现箭头函数
       allowBind: false,
     }],
     "react/no-set-state": 0,
+    "react/prop-types": 1,
     "react/require-optimization": 0,
     "global-require": 0,
     "object-curly-spacing": 0,

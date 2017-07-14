@@ -16,10 +16,18 @@ class Header extends React.Component {
     console.log('onLeftClick');
   }
 
+  onSearchClick() {
+    console.log('onSearchClick');
+  }
+
+  onEllClick() {
+    console.log('onEllClick');
+  }
+
   render() {
     const rigthContent = [
-      <Icon key="0" type="search" style={{ marginRight: '0.32rem' }}/>,
-      <Icon key="1" type="ellipsis"/>,
+      <Icon key="0" type="search" style={{marginRight: '0.32rem'}} onClick={this.onSearchClick}/>,
+      <Icon key="1" type="ellipsis" onClick={this.onEllClick}/>,
     ];
     return (
       <div className="header">

@@ -31,7 +31,7 @@ const devWebpackConfig = {
     path: distPath,
     filename: 'js/[name].[hash:8].bundle.js',
     chunkFilename: 'js/[id].[name].[chunkhash:8].bundle.js',
-    publicPath: host
+    // publicPath: host
   }
 };
 
@@ -69,6 +69,7 @@ commonWebpackConfig.module.rules = commonWebpackConfig.module.rules.concat(
 commonWebpackConfig.plugins = commonWebpackConfig.plugins.concat(
   [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('development')

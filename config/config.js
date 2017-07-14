@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  host: process.env.HOST || 'localhost',
+  host: process.env.HOST || '0.0.0.0',
   port: process.env.PORT || 3002,
   devPort: process.env.DEV_PORT || 3001,
   hotLoadPort: process.env.HOT_LOAD_PORT || 3000,

@@ -29,7 +29,7 @@ const commonWebpackConfig = {
       },
       {
         // test: /\.(jpe?g|png|gif|svg)$/i, //包含svg会报attrs undefined错误,字体文件可能要使用include做特殊处理
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif)$/i,
         use: ['url-loader?limit=1024&name=img/[name].[hash].[ext]']
       },
       // {
