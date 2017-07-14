@@ -1,8 +1,20 @@
-.app-wrap {
+html,
+body,
+#container,
+.app-wrap,
+.content-wrap {
   height: 100%;
 }
 
 .header {
-  background-color: lightgray;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.main-content {
+  height: 100%;
+  overflow-y: auto;
 }

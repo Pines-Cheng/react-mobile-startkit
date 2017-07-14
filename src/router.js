@@ -10,6 +10,7 @@ const NotFound = (location, cb) => require.ensure([], () => cb(null, require('./
 const Home = (location, cb) => require.ensure([], () => cb(null, require('./page/home').default), 'Home');
 
 // 订单
+const OrderList = (location, cb) => require.ensure([], () => cb(null, require('./page/order/list').default), 'OrderList');
 const OrderDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/order/detail').default), 'OrderDetail');
 const OrderProductList = (location, cb) => require.ensure([], () => cb(null, require('./page/order/product_list').default), 'OrderProductList');
 
@@ -17,7 +18,11 @@ const OrderProductList = (location, cb) => require.ensure([], () => cb(null, req
 const CustomerDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/customer/detail').default), 'CustomerDetail');
 
 // 商品
+const ProductList = (location, cb) => require.ensure([], () => cb(null, require('./page/product/list').default), 'ProductList');
 const ProductDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/product/detail').default), 'ProductDetail');
+
+// 消息
+const MessageList = (location, cb) => require.ensure([], () => cb(null, require('./page/message/list').default), 'MessageList');
 
 // 用户
 const UserAccount = (location, cb) => require.ensure([], () => cb(null, require('./page/user/account').default), 'UserAccount');
@@ -30,7 +35,8 @@ export default function ({history}) { //eslint-disable-line
         <IndexRedirect to="/home"/>
         <Route path="home" getComponent={Home}/>
         <Route path="order">
-          <IndexRedirect to="/order/detail"/>
+          <IndexRedirect to="/order/list"/>
+          <Route path="list" getComponent={OrderList}/>
           <Route path="detail" getComponent={OrderDetail}/>
           <Route path="product_list" getComponent={OrderProductList}/>
         </Route>
@@ -39,8 +45,13 @@ export default function ({history}) { //eslint-disable-line
           <Route path="detail" getComponent={CustomerDetail}/>
         </Route>
         <Route path="product">
-          <IndexRedirect to="/product/detail"/>
+          <IndexRedirect to="/product/list"/>
+          <Route path="list" getComponent={ProductList}/>
           <Route path="detail" getComponent={ProductDetail}/>
+        </Route>
+        <Route path="message">
+          <IndexRedirect to="/message/list"/>
+          <Route path="list" getComponent={MessageList}/>
         </Route>
         <Route path="user">
           <IndexRedirect to="/user/account"/>

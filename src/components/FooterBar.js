@@ -50,9 +50,7 @@ class Footer extends React.Component {
           badge={1}
           onPress={this.handleTabChange.bind(this, 'home')} //eslint-disable-line
           data-seed="logId"
-        >
-          {this.props.children}
-        </TabBar.Item>
+        />
         <TabBar.Item
           key="商品"
           title="商品"
@@ -68,9 +66,7 @@ class Footer extends React.Component {
           selected={this.state.selectedTab === 'product'}
           onPress={this.handleTabChange.bind(this, 'product')}//eslint-disable-line
           data-seed="logId1"
-        >
-          {this.props.children}
-        </TabBar.Item>
+        />
         <TabBar.Item
           key="订单"
           title="订单"
@@ -93,9 +89,7 @@ class Footer extends React.Component {
           dot
           selected={this.state.selectedTab === 'order'}
           onPress={this.handleTabChange.bind(this, 'order')}//eslint-disable-line
-        >
-          {this.props.children}
-        </TabBar.Item>
+        />
         <TabBar.Item
           key="消息"
           title="消息"
@@ -103,9 +97,7 @@ class Footer extends React.Component {
           selectedIcon={{uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg'}}
           selected={this.state.selectedTab === 'message'}
           onPress={this.handleTabChange.bind(this, 'message')}//eslint-disable-line
-        >
-          {this.props.children}
-        </TabBar.Item>
+        />
         <TabBar.Item
           key="我的"
           title="我的"
@@ -113,9 +105,7 @@ class Footer extends React.Component {
           selectedIcon={{uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg'}}
           selected={this.state.selectedTab === 'user'}
           onPress={this.handleTabChange.bind(this, 'user')}//eslint-disable-line
-        >
-          {this.props.children}
-        </TabBar.Item>
+        />
       </TabBar>
     );
   }

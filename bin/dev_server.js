@@ -8,12 +8,14 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import historyApiFallback from 'connect-history-api-fallback';
+import proxyMiddleware from 'http-proxy-middleware';
 import config from '../config/config';
 import webpackConfig from './webpack.dev';
 
 const compiler = webpack(webpackConfig);
 const host = config.host;
 const port = config.hotLoadPort;
+const proxyTable = config.proxyTable;
 const serverOptions = {
   noInfo: true,
   quiet: true,
@@ -25,6 +27,16 @@ const serverOptions = {
 };
 
 const app = express();
+
+// proxy api requests
+Object.keys(proxyTable).forEach((context) => {
+  let options = proxyTable[context];
+  if (typeof options === 'string') {
+    options = {target: options};
+  }
+  app.use(proxyMiddleware(context, options));
+});
+
 app.use(historyApiFallback());
 app.use(webpackDevMiddleware(compiler, serverOptions));
 app.use(webpackHotMiddleware(compiler, {

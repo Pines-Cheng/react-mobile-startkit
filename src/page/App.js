@@ -7,6 +7,15 @@ import PropTypes from 'prop-types';
 import '../css/common.less';
 import FooterBar from '../components/FooterBar';
 
+// 匹配到的路由，显示FooterBar
+const FOOTERBAR_DISPLAY_MAP = [
+  '/home',
+  '/product/list',
+  '/order/list',
+  '/message/list',
+  '/user'
+];
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -14,26 +23,31 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.location);
+    const pathname = this.props.location.pathname;
     return (
       <div className="app-wrap">
-        <div className="main-wrap">
-          {
-            this.props.params ?
-              <FooterBar push={this.props.history.push}>
-                {
-                  React.cloneElement(this.props.children, Object.assign({
-                    // key必须单独传,否则会有警告
-                    // https://gist.github.com/jimfb/fb2a04fe3fa4637d7d62
-                    key: this.props.location.pathname
-                  }, this.props))
-                }
-              </FooterBar>
-              :
-              React.cloneElement(this.props.children, Object.assign({
-                key: this.props.location.pathname
-              }, this.props))
-          }
-        </div>
+        {
+          // 控制FooterBar的显示隐藏
+          FOOTERBAR_DISPLAY_MAP.indexOf(pathname) >= 0 ?
+            <div className="content-wrap" style={{height: '100%'}}>
+              {
+                React.cloneElement(this.props.children, Object.assign({
+                  // key必须单独传,否则会有警告 https://gist.github.com/jimfb/fb2a04fe3fa4637d7d62
+                  key: pathname
+                }, this.props))
+              }
+              <FooterBar push={this.props.history.push}/>
+            </div>
+            :
+            <div className="content-wrap">
+              {
+                React.cloneElement(this.props.children, Object.assign({
+                  key: pathname
+                }, this.props))
+              }
+            </div>
+        }
       </div>
     );
   }

@@ -31,16 +31,14 @@ class Header extends React.Component {
     ];
     return (
       <div className="header">
-        <div>
-          <NavBar
-            leftContent="返回"
-            mode="light"
-            onLeftClick={this.onLeftClick()}
-            rightContent={rigthContent}
-          >
-            Home
-          </NavBar>
-        </div>
+        <NavBar
+          leftContent="返回"
+          mode="light"
+          onLeftClick={this.onLeftClick()}
+          rightContent={rigthContent}
+        >
+          {this.props.title || ''}
+        </NavBar>
       </div>
     );
   }

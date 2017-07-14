@@ -13,9 +13,9 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header/>
-        <div>
+      <div style={{height: '100%'}}>
+        <Header title="Home"/>
+        <div className="main-content">
           <h1>Home</h1>
           <h1>Home</h1>
           <h1>Home</h1>

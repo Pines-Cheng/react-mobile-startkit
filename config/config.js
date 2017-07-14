@@ -10,5 +10,12 @@ module.exports = {
   hotLoadPort: process.env.HOT_LOAD_PORT || 3000,
   app: {
     title: 'My App'
+  },
+  proxyTable: {
+    '^/app/**': {
+      target: 'https://agent.dinghuo123.com',
+      changeOrigin: true,
+      logLevel: 'debug'
+    }
   }
 };
