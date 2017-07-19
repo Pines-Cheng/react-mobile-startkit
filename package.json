@@ -6,6 +6,7 @@
   "scripts": {
     "precommit": "eslint --cache --fix ./src && stylelint --fix src/**/*.less",
     "commitmsg": "validate-commit-msg",
+    "mock": "json-server --watch ./mock/db.json",
     "start": "cross-env NODE_ENV=development babel-node --max-old-space-size=8192 ./bin/dev_server.js",
     "deploy": "cross-env NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config ./bin/webpack.dist.js --progress",
     "deploy:watch": "babel-node ./bin/deploy_server.js"
@@ -21,7 +22,6 @@
     "concurrently": "^3.4.0",
     "dva": "^1.2.1",
     "dva-loading": "^0.2.1",
-    "eslint-plugin-react": "^6.7.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "hahoorequest": "^0.6.2",
@@ -100,6 +100,7 @@
     "image-webpack-loader": "2.0.0",
     "imports-loader": "0.6.5",
     "jest-cli": "18.0.0",
+    "json-server": "^0.11.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "lint-staged": "3.2.1",

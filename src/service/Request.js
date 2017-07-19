@@ -110,7 +110,7 @@ const processResponse = function (promise, url, sucCode, config) {
 
 // 设置Request
 const Request = function (url, options) {
-  this.data = {};
+  this.params = {};
   this.url = url;
   this.sucCode = [0];
   /*
@@ -159,24 +159,24 @@ Request.prototype = {
   data(_data) {
     // 过滤null  undefined 只Object 类型。
     if (Object.prototype.toString.call(_data) === '[object Object]') {
-      this.data = {};
+      this.params = {};
       for (const index in _data) { //eslint-disable-line
         if (_data[index] !== null && _data[index] !== undefined) {
-          this.data[index] = _data[index];
+          this.params[index] = _data[index];
         }
       }
     }
     return this;
   },
   json(_data) {
-    this.data = JSON.stringify(_data);
+    this.params = JSON.stringify(_data);
     return this;
   },
   getConfig() {
     const t = this;
     return {
       url: t.url,
-      data: t.data,
+      data: t.params,
       sucCode: t.sucCode,
       options: t.options
     };
@@ -184,15 +184,15 @@ Request.prototype = {
   setConfig(d) {
     const t = this;
     t.url = d.url;
-    t.data = d.data;
+    t.params = d.data;
     t.sucCode = d.sucCode;
     t.options = d.options;
   },
   get() {
     const t = this;
     // 生成唯一请求
-    t.data.t = new Date().getTime();
-    const p = param(t.data);
+    t.params.t = new Date().getTime();
+    const p = param(t.params);
     let newUrl = t.url + (t.url.indexOf('?') > -1 ? '&' : '?') + p;
     if (t.options.cors) {
       t.options.credentials = 'include'; // fetch中的参数是这个
@@ -206,7 +206,7 @@ Request.prototype = {
   },
   post() {
     const t = this;
-    const data = t.data;
+    const data = t.params;
     let body;
     t.options.method = 'post';
     t.options.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
@@ -225,7 +225,7 @@ Request.prototype = {
       // for (var e in data) {
       //     body.append(e, data[e]);
       // }
-      body = param(t.data);
+      body = param(t.params);
     } else {
       // 传入json string
       console.warn(data);

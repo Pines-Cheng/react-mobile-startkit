@@ -31,6 +31,7 @@ module.exports = {
     "react/jsx-no-literals": 0, //var Hello = <div>{'test'}</div>;
     "react/jsx-tag-spacing": 0,
     "react/jsx-handler-names": 1,
+    "react/jsx-wrap-multilines": 0,// 莫名其妙报错
     'react/jsx-no-bind': ['error', {
       ignoreRefs: true,
       allowArrowFunctions: false,//不允许jsx里面出现箭头函数

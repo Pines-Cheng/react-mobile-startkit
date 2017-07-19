@@ -12,8 +12,8 @@ module.exports = {
     title: 'My App'
   },
   proxyTable: {
-    '^/app/**': {
-      target: 'https://agent.dinghuo123.com',
+    '^/v2/**': {
+      target: 'https://api.dinghuo123.com',
       changeOrigin: true,
       logLevel: 'debug'
     }

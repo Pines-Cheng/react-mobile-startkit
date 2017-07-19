@@ -6,6 +6,10 @@
 
 import Request from './Request';
 
+const initParams = {
+  access_token: 'b1c9aeb1dce5eb26672a2d72041276b3'
+};
+
 /**
  * 地址
  */
@@ -19,7 +23,7 @@ import Request from './Request';
  * 部门和区域
  */
 
-const customRegionList = (params = {}) => Request('/app/cart?action=count').data(params).get();
+const customRegionList = (params = initParams) => Request('/crm/company/subuserlist').data(params).get();
 
 /**
  * 公共接口
@@ -32,7 +36,7 @@ const customRegionList = (params = {}) => Request('/app/cart?action=count').data
 /**
  * 员工账号
  */
-const companyUserList = (params = {}) => Request('/app/showstylePage?page=INDEX').data(params).get();
+const companyUserList = (params = initParams) => Request('/app/showstylePage?page=INDEX').data(params).get();
 
 /**
  * 促销和广告
@@ -41,7 +45,7 @@ const companyUserList = (params = {}) => Request('/app/showstylePage?page=INDEX'
 /**
  * 商品
  */
-const productList = (params = {}) => Request('/app/goods?action=goodsSummary').data(params).get();
+const getProductList = (params = initParams) => Request('/v2/goods/goods_summary').data(params).get();
 
 
 /**
@@ -97,10 +101,8 @@ const productList = (params = {}) => Request('/app/goods?action=goodsSummary').d
  * 采购管理
  */
 
-customRegionList();
-
 export {
   customRegionList,
   companyUserList,
-  productList
+  getProductList
 };
