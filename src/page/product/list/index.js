@@ -12,12 +12,6 @@ class OrderDetail extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    getProductList().then((rsp) => {
-      console.log(rsp);
-    });
-  }
-
   render() {
     return (
       <div>

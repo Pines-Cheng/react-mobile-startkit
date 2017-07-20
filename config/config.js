@@ -16,6 +16,16 @@ module.exports = {
       target: 'https://api.dinghuo123.com',
       changeOrigin: true,
       logLevel: 'debug'
+    },
+    '^/public/**': {
+      target: 'https://api.dinghuo123.com',
+      changeOrigin: true,
+      logLevel: 'debug'
+    },
+    '^/repos/**': {
+      target: 'https://api.github.com',
+      changeOrigin: true,
+      logLevel: 'debug'
     }
   }
 };

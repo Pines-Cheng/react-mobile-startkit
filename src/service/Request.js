@@ -67,8 +67,8 @@ const processResponse = function (promise, url, sucCode, config) {
       console.log('请先登录');
       RedirectToLogin();
       return Promise.reject(new Error(rsp.message || '未知错误'));
-    } else if (rsp.code === 200) {
-      sysError(rsp.message);
+    }
+    if (rsp.code === 200) {
       return rsp;
     }
     if (rsp.code === 405 || rsp.code === 404 || rsp.code === 110 || rsp.code === 525 || rsp.code === 250) {

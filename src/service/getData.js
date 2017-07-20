@@ -23,7 +23,7 @@ const initParams = {
  * 部门和区域
  */
 
-const customRegionList = (params = initParams) => Request('/crm/company/subuserlist').data(params).get();
+const getCustomRegionList = (params = initParams) => Request('/crm/company/subuserlist').data(params).get();
 
 /**
  * 公共接口
@@ -36,7 +36,7 @@ const customRegionList = (params = initParams) => Request('/crm/company/subuserl
 /**
  * 员工账号
  */
-const companyUserList = (params = initParams) => Request('/app/showstylePage?page=INDEX').data(params).get();
+const getCompanyUserList = (params = initParams) => Request('/app/showstylePage?page=INDEX').data(params).get();
 
 /**
  * 促销和广告
@@ -102,7 +102,7 @@ const getProductList = (params = initParams) => Request('/v2/goods/goods_summary
  */
 
 export {
-  customRegionList,
-  companyUserList,
+  getCustomRegionList,
+  getCompanyUserList,
   getProductList
 };

@@ -6,6 +6,14 @@ import React from 'react';
 import {Router, Route, IndexRedirect} from 'dva/router';
 import App from './page/App';
 
+const cached = {};
+function registerModel(app, model) {
+  if (!cached[model.namespace]) {
+    app.model(model);
+    cached[model.namespace] = 1;
+  }
+}
+
 const NotFound = (location, cb) => require.ensure([], () => cb(null, require('./components/NotFound').default), 'NotFound');
 const Home = (location, cb) => require.ensure([], () => cb(null, require('./page/home').default), 'Home');
 
@@ -18,7 +26,10 @@ const OrderProductList = (location, cb) => require.ensure([], () => cb(null, req
 const CustomerDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/customer/detail').default), 'CustomerDetail');
 
 // 商品
-const ProductList = (location, cb) => require.ensure([], () => cb(null, require('./page/product/list').default), 'ProductList');
+const ProductList = (app, location, cb) => require.ensure([], () => {
+  registerModel(app, require('./page/product/list/saga').default);
+  cb(null, require('./page/product/list').default);
+}, 'ProductList');
 const ProductDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/product/detail').default), 'ProductDetail');
 
 // 消息
@@ -28,7 +39,7 @@ const MessageList = (location, cb) => require.ensure([], () => cb(null, require(
 const UserAccount = (location, cb) => require.ensure([], () => cb(null, require('./page/user/account').default), 'UserAccount');
 
 
-export default function ({history}) { //eslint-disable-line
+export default function ({history, app}) { //eslint-disable-line
   return (
     <Router history={history}>
       <Route path="/" component={App}>
@@ -46,7 +57,7 @@ export default function ({history}) { //eslint-disable-line
         </Route>
         <Route path="product">
           <IndexRedirect to="/product/list"/>
-          <Route path="list" getComponent={ProductList}/>
+          <Route path="list" getComponent={ProductList.bind(this,app)}/>
           <Route path="detail" getComponent={ProductDetail}/>
         </Route>
         <Route path="message">
