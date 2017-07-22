@@ -18,6 +18,8 @@ const initParams = {
 /**
  * 订单和退单
  */
+const getOrderList = (params = initParams) => Request('/v2/order/order_all_list').data(params).get();
+
 
 /**
  * 部门和区域
@@ -32,6 +34,7 @@ const getCustomRegionList = (params = initParams) => Request('/crm/company/subus
 /**
  * 客户
  */
+const getCustomerList = (params = initParams) => Request('/crm/customer/subcustomerlist').data(params).get();
 
 /**
  * 员工账号
@@ -104,5 +107,7 @@ const getProductList = (params = initParams) => Request('/v2/goods/goods_summary
 export {
   getCustomRegionList,
   getCompanyUserList,
-  getProductList
+  getProductList,
+  getCustomerList,
+  getOrderList
 };

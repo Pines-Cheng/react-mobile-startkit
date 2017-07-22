@@ -18,7 +18,11 @@ const NotFound = (location, cb) => require.ensure([], () => cb(null, require('./
 const Home = (location, cb) => require.ensure([], () => cb(null, require('./page/home').default), 'Home');
 
 // 订单
-const OrderList = (location, cb) => require.ensure([], () => cb(null, require('./page/order/list').default), 'OrderList');
+const OrderList = (app, location, cb) => require.ensure([], () => {
+  registerModel(app, require('./page/order/list/saga').default);
+  cb(null, require('./page/order/list').default);
+}, 'OrderList');
+
 const OrderDetail = (location, cb) => require.ensure([], () => cb(null, require('./page/order/detail').default), 'OrderDetail');
 const OrderProductList = (location, cb) => require.ensure([], () => cb(null, require('./page/order/product_list').default), 'OrderProductList');
 
@@ -47,7 +51,7 @@ export default function ({history, app}) { //eslint-disable-line
         <Route path="home" getComponent={Home}/>
         <Route path="order">
           <IndexRedirect to="/order/list"/>
-          <Route path="list" getComponent={OrderList}/>
+          <Route path="list" getComponent={OrderList.bind(this,app)}/>
           <Route path="detail" getComponent={OrderDetail}/>
           <Route path="product_list" getComponent={OrderProductList}/>
         </Route>

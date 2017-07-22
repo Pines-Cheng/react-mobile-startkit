@@ -9,7 +9,7 @@ import {getProductList} from '../../../service/getData';
 export default {
   namespace: 'product/list',
   state: {
-    productList: {},
+    orderList: {},
   },
   subscriptions: {
     setup({dispatch, history}) {

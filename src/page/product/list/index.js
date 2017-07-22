@@ -4,9 +4,10 @@
  */
 import React from 'react';
 import Header from '../../../components/Header';
-import {getProductList} from '../../../service/getData';
+import {connect} from 'dva';
+import {getCustomerList} from '../../../service/getData';
 
-class OrderDetail extends React.Component {
+class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -22,4 +23,14 @@ class OrderDetail extends React.Component {
   }
 }
 
-export default OrderDetail;
+function mapStateToProps(state, ownProps) {
+  console.log(state);
+  return {
+    loading: state.loading.global,
+    productList: state.productList
+  };
+}
+
+export default connect(mapStateToProps)(ProductList);
+
+// export default ProductList;
